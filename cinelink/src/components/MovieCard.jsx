@@ -1,32 +1,26 @@
 // src/components/MovieCard.jsx
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
-      {/* Gambar Film */}
-      <div className="overflow-hidden">
-        <img
-          src={movie.image}
-          alt={movie.title}
-          className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
-        />
-      </div>
+    <div className="bg-black text-white p-4 rounded-lg shadow-md overflow-hidden">
+      <img
+        src={movie.image}
+        alt={movie.title}
+        className="w-full h-64 object-cover mb-2"
+      />
+      <h3 className="text-xl font-bold">{movie.title}</h3>
+      <p className="text-sm text-gray-400">Genre: {movie.genre}</p>
+      <p className="text-sm text-gray-400">Durasi: {movie.duration}</p>
 
-      {/* Detail Film */}
-      <div className="p-4">
-        <h2 className="text-xl font-bold text-white">{movie.title}</h2>
-        <p className="text-sm text-gray-400 mt-1">Genre: {movie.genre}</p>
-        <p className="text-sm text-gray-400">Durasi: {movie.duration}</p>
-
-        {/* Tombol Detail */}
-        <a
-          href={`/movie/${movie.id}`}
-          className="mt-4 inline-block text-red-500 hover:text-red-400 text-sm font-semibold"
-        >
-          Lihat Detail →
-        </a>
-      </div>
+      {/* Tambahkan tombol detail */}
+      <Link
+        to={`/movie/${movie.id}`}
+        className="mt-4 inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition duration-300"
+      >
+        Lihat Detail
+      </Link>
     </div>
   );
 };

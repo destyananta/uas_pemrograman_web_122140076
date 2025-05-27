@@ -1,10 +1,42 @@
+/* Import dasar dari Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Reset default browser */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f9fafb;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Carousel Scrollbar Hide (untuk bagian film yang scroll horizontal) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Efek Hover dan Transisi */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

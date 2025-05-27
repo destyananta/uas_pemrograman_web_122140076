@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo / Nama Aplikasi */}
           <div className="flex-shrink-0 font-bold text-xl text-red-500">
-            Cinelink
+            CineLink
           </div>
 
           {/* Menu Navigasi */}

@@ -1,10 +1,12 @@
 // src/pages/BookingPage.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BookingPage = () => {
   const [quantity, setQuantity] = useState(1);
   const pricePerTicket = 50000;
   const totalPrice = quantity * pricePerTicket;
+  const navigate = useNavigate();
 
   const handleQuantityChange = (e) => {
     const qty = parseInt(e.target.value);
@@ -15,8 +17,21 @@ const BookingPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const booking = {
+      id: Date.now(),
+      movie: "Judul Film Contoh", // Ganti jika ada judul film dinamis
+      time: new Date().toLocaleString('id-ID'),
+      quantity: quantity,
+      status: "Sudah Dibayar"
+    };
+
+    const existingBookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    existingBookings.push(booking);
+    localStorage.setItem('bookings', JSON.stringify(existingBookings));
+
     alert(`Anda memesan ${quantity} tiket. Total Harga: Rp${totalPrice.toLocaleString()}`);
-    // Di sini bisa ditambahkan integrasi ke Midtrans / Stripe
+    navigate('/history');
   };
 
   return (

@@ -1,43 +1,10 @@
-// src/pages/MovieDetail.jsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
-const movies = [
-  {
-    id: 1,
-    title: "Avengers: Endgame",
-    genre: "Action",
-    duration: "180 min",
-    synopsis:
-      "Avengers: Endgame adalah film superhero yang mengisahkan para pahlawan super mencoba menyelamatkan dunia dari ancaman besar.",
-    schedule: ["13:00", "16:00", "19:00"],
-    image: "https://via.placeholder.com/300x450?text=Avengers+Endgame "
-  },
-  {
-    id: 2,
-    title: "Spider-Man: No Way Home",
-    genre: "Action",
-    duration: "148 min",
-    synopsis:
-      "Spider-Man: No Way Home mengisahkan Spider-Man yang harus menghadapi tantangan baru dalam menjaga keamanan dunia.",
-    schedule: ["14:00", "17:00", "20:00"],
-    image: "https://via.placeholder.com/300x450?text=Spider-Man+No+Way+Home "
-  },
-  {
-    id: 3,
-    title: "The Batman",
-    genre: "Crime",
-    duration: "176 min",
-    synopsis:
-      "The Batman menceritakan kisah Bruce Wayne sebagai The Batman, yang berjuang untuk memburu seorang pembunuh berantai di Gotham City.",
-    schedule: ["15:00", "18:00", "21:00"],
-    image: "https://via.placeholder.com/300x450?text=The+Batman "
-  }
-];
+import movies from '../data/MovieData';  // Gunakan data film yang diimpor saja
 
 const MovieDetail = () => {
-  const { id } = useParams(); // Ambil ID dari URL
-  const movie = movies.find(film => film.id === parseInt(id)); // Cari film berdasarkan ID
+  const { id } = useParams();
+  const movie = movies.find(film => film.id === parseInt(id));
 
   if (!movie) {
     return <div className="p-4 text-white">Film tidak ditemukan</div>;

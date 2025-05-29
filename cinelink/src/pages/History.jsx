@@ -1,5 +1,5 @@
-// src/pages/History.jsx
 import React, { useEffect, useState } from 'react';
+import movies from '../data/MovieData'; // Import data film lengkap
 
 const History = () => {
   const [bookings, setBookings] = useState([]);
@@ -23,29 +23,37 @@ const History = () => {
           <p className="text-gray-400 text-center">Belum ada riwayat pemesanan.</p>
         ) : (
           <div className="space-y-4">
-            {bookings.map(booking => (
-              <div
-                key={booking.id}
-                className="bg-gray-900 rounded-lg shadow-md p-4 hover:bg-gray-800 transition duration-300"
-              >
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h2 className="text-xl font-semibold">{booking.movie}</h2>
-                    <p className="text-sm text-gray-400 mt-1">Jadwal: {booking.time}</p>
-                    <p className="text-sm text-gray-400">Jumlah Tiket: {booking.quantity}</p>
+            {bookings.map(booking => {
+              // Cari film asli berdasarkan movieId di booking
+              const movie = movies.find(m => m.id === booking.movieId);
+
+              return (
+                <div
+                  key={booking.id}
+                  className="bg-gray-900 rounded-lg shadow-md p-4 hover:bg-gray-800 transition duration-300"
+                >
+                  <div className="flex justify-between items-start">
+                    <div>
+                      {/* Tampilkan judul film asli */}
+                      <h2 className="text-xl font-semibold">{movie ? movie.title : booking.movieTitle}</h2>
+
+                      <p className="text-sm text-gray-400 mt-1">Jadwal Film: {booking.time || '-'}</p>
+                      <p className="text-sm text-gray-400">Tanggal Pemesanan: {booking.bookingDate || '-'}</p>
+                      <p className="text-sm text-gray-400">Jumlah Tiket: {booking.quantity}</p>
+                    </div>
+                    <span
+                      className={`inline-block text-sm font-medium px-3 py-1 rounded ${
+                        booking.status === 'Sudah Dibayar'
+                          ? 'bg-green-500 text-white'
+                          : 'bg-yellow-500 text-white'
+                      }`}
+                    >
+                      {booking.status}
+                    </span>
                   </div>
-                  <span
-                    className={`inline-block text-sm font-medium px-3 py-1 rounded ${
-                      booking.status === 'Sudah Dibayar'
-                        ? 'bg-green-500 text-white'
-                        : 'bg-yellow-500 text-white'
-                    }`}
-                  >
-                    {booking.status}
-                  </span>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>

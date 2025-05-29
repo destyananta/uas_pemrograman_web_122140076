@@ -1,0 +1,14 @@
+[
+  {
+    "nama_film": "Avengers: Endgame",
+    "deskripsi": "The epic conclusion to the Avengers saga.",
+    "genre": "Action",
+    "durasi": "02:59:00"
+  },
+  {
+    "nama_film": "Inception",
+    "deskripsi": "A mind-bending thriller about dreams within dreams.",
+    "genre": "Sci-Fi",
+    "durasi": "02:28:00"
+  }
+]
